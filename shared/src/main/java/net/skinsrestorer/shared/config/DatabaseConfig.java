@@ -34,7 +34,7 @@ public class DatabaseConfig implements SettingsHolder {
 
     public static final Property<String> MONGODB_DATABASE =
             newProperty("database.mongodb.database", "skinsrestorer");
-    public static final Property<DatabaseType> DATABASE_TYPE = newProperty(DatabaseType.class, "database.type", DatabaseType.FILE);
+    public static final Property<DatabaseType> DATABASE_TYPE = newProperty(DatabaseType.class, "database.type", DatabaseType.MONGODB);
     public static final Property<String> MYSQL_HOST = newProperty("database.host", "localhost");
     public static final Property<Integer> MYSQL_PORT = newCappedProperty("database.port", 3306, 1, 65535);
     public static final Property<String> MYSQL_DATABASE = newProperty("database.database", "db");
