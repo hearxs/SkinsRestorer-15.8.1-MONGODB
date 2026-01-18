@@ -1,0 +1,37 @@
+{
+  "extends": [
+    "config:recommended",
+    "group:allNonMajor",
+    ":semanticCommits"
+  ],
+  "baseBranches": [
+    "dev"
+  ],
+  "reviewers": [
+    "xknat"
+  ],
+  "ignoreDeps": [
+    "com.viaversion:viaversion",
+    "org.spigotmc:spigot-api"
+  ],
+  "labels": [
+    "renovate"
+  ],
+  "packageRules": [
+    {
+      "matchUpdateTypes": [
+        "minor",
+        "patch",
+        "pin",
+        "digest"
+      ],
+      "automerge": true
+    },
+    {
+      "matchPackageNames": [
+        "**"
+      ],
+      "allowedVersions": "!/\\-SNAPSHOT$/"
+    }
+  ]
+}
