@@ -59,4 +59,6 @@ fun ShadowJar.configureRelocations() {
     relocate("io.leangen.geantyref", "net.skinsrestorer.shadow.geantyref")
 
     relocate("net.lenni0451.reflect", "net.skinsrestorer.shadow.reflect")
+    relocate("com.mongodb", "net.skinsrestorer.shadow.mongodb")
+    relocate("org.bson", "net.skinsrestorer.shadow.bson")
 }

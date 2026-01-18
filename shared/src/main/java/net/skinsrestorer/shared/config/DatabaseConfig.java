@@ -27,8 +27,13 @@ import static net.skinsrestorer.shared.config.ConfigHelpers.newCappedProperty;
 
 public class DatabaseConfig implements SettingsHolder {
     @Comment({
-            "Database backend selection. Valid values: FILE, MYSQL, POSTGRESQL."
+            "Database backend selection. Valid values: FILE, MYSQL, POSTGRESQL, MONGODB."
     })
+    public static final Property<String> MONGODB_CONNECTION_STRING =
+            newProperty("database.mongodb.connectionString", "mongodb://localhost:2020");
+
+    public static final Property<String> MONGODB_DATABASE =
+            newProperty("database.mongodb.database", "skinsrestorer");
     public static final Property<DatabaseType> DATABASE_TYPE = newProperty(DatabaseType.class, "database.type", DatabaseType.FILE);
     public static final Property<String> MYSQL_HOST = newProperty("database.host", "localhost");
     public static final Property<Integer> MYSQL_PORT = newCappedProperty("database.port", 3306, 1, 65535);
@@ -58,6 +63,7 @@ public class DatabaseConfig implements SettingsHolder {
     public enum DatabaseType {
         FILE,
         MYSQL,
-        POSTGRESQL
+        POSTGRESQL,
+        MONGODB  // ← 新增
     }
 }

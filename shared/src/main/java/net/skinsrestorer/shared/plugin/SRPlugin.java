@@ -17,6 +17,8 @@
  */
 package net.skinsrestorer.shared.plugin;
 
+import net.skinsrestorer.shared.storage.adapter.mongodb.MongoDBAdapter;
+import net.skinsrestorer.shared.storage.adapter.mongodb.MongoDBProvider;
 import ch.jalu.configme.SettingsManager;
 import ch.jalu.configme.SettingsManagerBuilder;
 import ch.jalu.injector.Injector;
@@ -254,6 +256,17 @@ public class SRPlugin {
                     logger.info("Connected to MySQL!");
                     yield mySQLAdapter;
                 }
+                case MONGODB -> {
+                    MongoDBProvider mongoProvider = new MongoDBProvider();
+                    mongoProvider.init(
+                            settings.getProperty(DatabaseConfig.MONGODB_CONNECTION_STRING),
+                            settings.getProperty(DatabaseConfig.MONGODB_DATABASE)
+                    );
+                    MongoDBAdapter adapter = new MongoDBAdapter(mongoProvider);
+                    adapter.init(); // ← 必须调用 init()！
+                    logger.info("Connected to MongoDB database: " + settings.getProperty(DatabaseConfig.MONGODB_DATABASE));
+                    yield adapter;
+                }
             };
 
             injector.getSingleton(AdapterReference.class).setAdapter(storageAdapter);
@@ -265,6 +278,7 @@ public class SRPlugin {
                 case FILE -> "file storage";
                 case MYSQL -> "MySQL";
                 case POSTGRESQL -> "PostgreSQL";
+                case MONGODB -> "MongoDB"; // ← 新增这一行
             };
             logger.severe("§cCan't connect to %s! Disabling SkinsRestorer.".formatted(databaseName), e);
             throw new InitializeException(e);

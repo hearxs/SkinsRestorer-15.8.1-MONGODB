@@ -124,6 +124,7 @@ public class DumpService {
                 case FILE -> DumpInfo.PluginInfo.StorageType.FILE;
                 case MYSQL -> DumpInfo.PluginInfo.StorageType.MYSQL;
                 case POSTGRESQL -> DumpInfo.PluginInfo.StorageType.POSTGRESQL;
+                case MONGODB -> DumpInfo.PluginInfo.StorageType.MONGODB;
             };
         }
 

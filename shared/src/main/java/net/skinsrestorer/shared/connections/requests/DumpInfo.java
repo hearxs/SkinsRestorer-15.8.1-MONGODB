@@ -59,7 +59,8 @@ public class DumpInfo {
             NONE,
             FILE,
             MYSQL,
-            POSTGRESQL
+            POSTGRESQL,
+            MONGODB
         }
     }
 

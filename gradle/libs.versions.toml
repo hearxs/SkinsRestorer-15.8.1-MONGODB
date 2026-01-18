@@ -51,9 +51,11 @@ miniplaceholders = "3.0.1"
 paper-api = "1.21.5-R0.1-SNAPSHOT"
 craftbukkit = "1.7.10-R0.1-SNAPSHOT"
 reflect = "1.5.0"
+mongodb-driver-sync = "4.11.2"  # 或最新稳定版
 
 [libraries]
 
+mongodb-driver = { module = "org.mongodb:mongodb-driver-sync", version.ref = "mongodb-driver-sync" }
 adventure-bukkit = { module = "net.kyori:adventure-platform-bukkit", version.ref = "adventure-platform" }
 adventure-bungeecord = { module = "net.kyori:adventure-platform-bungeecord", version.ref = "adventure-platform" }
 adventure-api = { module = "net.kyori:adventure-api", version.ref = "adventure" }

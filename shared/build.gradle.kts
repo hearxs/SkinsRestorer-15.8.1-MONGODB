@@ -7,6 +7,7 @@ dependencies {
     api(projects.skinsrestorerBuildData)
     api(projects.skinsrestorerApi)
     implementation(projects.skinsrestorerScissors)
+    implementation("org.mongodb:mongodb-driver-sync:4.11.2")
 
     api(libs.gson)
     implementation(libs.mariadb.java.client) {
@@ -14,6 +15,7 @@ dependencies {
     }
     implementation(libs.postgresql)
     implementation(libs.hikari.cp)
+    implementation(libs.mongodb.driver)
 
     api(libs.configme)
     api(libs.injector) {
