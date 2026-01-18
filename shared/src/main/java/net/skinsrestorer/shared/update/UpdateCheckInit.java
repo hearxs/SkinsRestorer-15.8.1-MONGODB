@@ -49,11 +49,8 @@ public class UpdateCheckInit {
     }
 
     public void run(InitCause cause) {
-        UpdateDownloader downloader = getDownloader().orElse(null);
-        updateCheckExecutor.checkUpdate(cause.toUpdateCause(), updateChecker, downloader, true);
-
-        int delayInt = 60 + ThreadLocalRandom.current().nextInt(240 - 60 + 1);
-        adapter.runRepeatAsync(() -> updateCheckExecutor.checkUpdate(UpdateCause.SCHEDULED, updateChecker, downloader, false), delayInt, delayInt, TimeUnit.MINUTES);
+        // 已禁用：无更新检查或通知
+        return;
     }
 
     public enum InitCause {

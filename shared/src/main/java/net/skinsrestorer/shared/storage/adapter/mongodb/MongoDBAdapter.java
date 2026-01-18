@@ -318,7 +318,16 @@ public class MongoDBAdapter implements StorageAdapter {
             Document doc = mojangCacheCol.find(Filters.eq("_id", playerName.toLowerCase(Locale.ROOT))).first();
             if (doc == null) return Optional.empty();
 
-            UUID uuid = doc.containsKey("uuid") ? UUID.fromString(doc.getString("uuid")) : null;
+            // 1. 先获取 uuid 字符串
+            String uuidString = doc.getString("uuid");
+            UUID uuid = null;
+
+            // 2. 只有在字符串不为 null 且不为空时，才尝试转换
+            if (uuidString != null && !uuidString.isEmpty()) {
+                uuid = UUID.fromString(uuidString);
+            }
+            // 如果 uuidString 是 null 或空，uuid 保持为 null
+
             long timestamp = doc.getLong("timestamp");
             return Optional.of(MojangCacheData.of(uuid, timestamp));
         } catch (Exception e) {
